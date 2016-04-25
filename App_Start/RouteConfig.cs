@@ -11,6 +11,13 @@ namespace StaticFile
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                name: "StaticResource",
+                url: "static/{page}",
+                defaults: new { controller = "Static", action = "Html", page = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
